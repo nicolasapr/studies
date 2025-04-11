@@ -1,2 +1,2 @@
 # studies
-my repository for 
+my repository for studies
