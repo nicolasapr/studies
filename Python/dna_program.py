@@ -37,10 +37,10 @@ while True:
 
 # Exibir os resultados
 for i in testes:
-    print(f"Teste {i['teste']}")
-    print(f"ocorrencia direta: {i['direta']}")
-    print(f"ocorrencia complementar invertida: {i['complementar']}")
-    print()
+    print(f"Teste : {i['teste']}")
+    print(f"Direta : {i['direta']}")
+    print(f"Complementar : {i['complementar']}")*
+
 
 
 
