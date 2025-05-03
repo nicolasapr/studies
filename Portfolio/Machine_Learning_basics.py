@@ -1,6 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import kagglehub
+import numpy as np
 from kagglehub import KaggleDatasetAdapter
 import sklearn as sk
 from sklearn.model_selection import train_test_split
@@ -72,16 +73,77 @@ modelo = LinearRegression()
 modelo.fit(train_X, train_Y)
 
 predict_y = modelo.predict(test_X)
-print(predict_y)
 
 mse = mean_squared_error(test_Y, predict_y)
 print("mse = ", mse)
 
-plt.figure(figsize=(8,6))
-plt.scatter(test_Y, predict_y, color='blue', label='Predição')
-plt.plot([test_Y.min(), test_Y.max()], [test_Y.min(), test_Y.max()], 'r--', label='Linha Ideal')
-plt.xlabel("Happiness Score (Real)")
-plt.ylabel("Happiness Score (Predito)")
-plt.title("Comparação entre Valores Reais e Preditos")
+'''plt.figure(figsize=(8,6))
+
+plt.show()'''
+'''plt.style.use('ggplot')
+plt.figure(figsize=(10,6))
+plt.plot(df_training["Economy (GDP per Capita)"], Y, color='b', marker='*')
+plt.xlabel("Economy (GDP per Capita)")
+plt.ylabel("Happiness Score")
+plt.title("Happiness Score X Economy (GDP per Capita)")
+plt.yticks(np.arange(2.5,8,0.50))
+plt.xticks(np.arange(0,2,0.125))'''
+plt.style.use('ggplot')
+fig, ([ax1,ax2,ax3,ax4], [ax5,ax6,ax7,ax8]) = plt.subplots(2,4, figsize=(15,10))
+plt.subplots_adjust(
+    left=0.065,
+    bottom=0.106,
+    right=0.965,
+    top=0.935,
+    wspace=0.38,
+    hspace=0.335
+)
+ax1.plot(df_training["Economy (GDP per Capita)"], Y, color='b', marker='o')
+ax1.set_xlabel("Economy (GDP per Capita)")
+ax1.set_ylabel("Happiness Score")
+ax1.set_title("Happiness Score X Economy (GDP per Capita)", fontsize=10)
+ax1.text(0.10,6.5,"It looks linear.")
+
+ax2.plot(df_training["Family"], Y, color='r', marker='o')
+ax2.set_xlabel("Family")
+ax2.set_ylabel("Happiness Score")
+ax2.set_title("Happiness Score X Family", fontsize=10)
+ax2.text(0.25,6.5,"It looks linear.")
+
+ax3.plot(df_training["Health (Life Expectancy)"], Y, color='g', marker='o')
+ax3.set_xlabel("Health (Life Expectancy)")
+ax3.set_ylabel("Happiness Score")
+ax3.set_title("Happiness Score X Health (Life Expectancy)", fontsize=10)
+ax3.text(0,6.5,"It looks linear.")
+
+ax4.plot(df_training["Freedom"], Y, color='y', marker='o')
+ax4.set_xlabel("Freedom")
+ax4.set_ylabel("Happiness Score")
+ax4.set_title("Happiness Score X Freedom", fontsize=10)
+ax4.text(0.1,7,"It looks linear.")
+
+ax5.plot(df_training["Trust (Government Corruption)"], Y, color='c', marker='o')
+ax5.set_xlabel("Trust (Government Corruption)")
+ax5.set_ylabel("Happiness Score")
+ax5.set_title("Happiness Score X Trust", fontsize=10)
+
+ax6.plot(df_training["Generosity"], Y, color='m', marker='o')
+ax6.set_xlabel("Generosity")
+ax6.set_ylabel("Happiness Score")
+ax6.set_title("Happiness Score X Generosity", fontsize=10)
+
+ax7.plot(df_training["Dystopia Residual"], Y, color='k', marker='o')
+ax7.set_xlabel("Dystopia Residual")
+ax7.set_ylabel("Happiness Score")
+ax7.set_title("Happiness Score X Dystopia Residual", fontsize=10)
+
+ax8.scatter(test_Y, predict_y, color='blue', label='Predictions')
+ax8.plot([test_Y.min(), test_Y.max()], [test_Y.min(), test_Y.max()], 'r--', label='Ideal line')
+ax8.set_xlabel("Happiness Score (Real)")
+ax8.set_ylabel("Happiness Score (Predict)")
+ax8.set_title("Testing Linear Regression on Dataset", fontsize=10)
+ax8.text(5,4, f"mse ~= {mse:.6f}", fontsize=10)
 plt.legend()
+
+
 plt.show()
